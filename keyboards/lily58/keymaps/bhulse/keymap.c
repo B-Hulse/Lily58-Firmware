@@ -1,8 +1,8 @@
 #include QMK_KEYBOARD_H
 
 enum layer_number {
-  _QWERTY = 0,
-  _WORKMAN,
+  _WORKMAN = 0,
+  _QWERTY,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -10,10 +10,33 @@ enum layer_number {
 
 enum custom_keycodes {
   BH_ABCD1234 = SAFE_RANGE,
+  BH_VMWH,
+  BH_MACH,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+/* WORKMAN
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | Tab  |   Q  |   D  |   R  |   W  |   B  |                    |   J  |   F  |   U  |   P  |   ;  |  -   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LCTRL |   A  |   S  |   H  |   T  |   G  |-------.    ,-------|   Y  |   N  |   E  |   O  |   I  |  '   |
+ * |------+------+------+------+------+------|  Del  |    |    \  |------+------+------+------+------+------|
+ * |LShift|   Z  |   X  |   M  |   C  |   V  |-------|    |-------|   K  |   L  |   ,  |   .  |   /  |RShift|
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Shift \  |RAISE |BackSP| RGUI |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
 
+ [_WORKMAN] = LAYOUT(
+  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,       KC_7,    KC_8,    KC_9,    KC_0,     KC_GRV,
+  KC_TAB,   KC_Q,   KC_D,    KC_R,    KC_W,    KC_B,                        KC_J,       KC_F,    KC_U,    KC_P,    KC_SCLN,  KC_MINS,
+  KC_LSFT,  KC_A,   KC_S,    KC_H,    KC_T,    KC_G,                        KC_Y,       KC_N,    KC_E,    KC_O,    KC_I,     KC_QUOT,
+  KC_LCTRL, KC_Z,   KC_X,    KC_M,    KC_C,    KC_V,       KC_DEL, KC_BSLS, KC_K,       KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
+                             KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC, KC_RSFT, MO(_RAISE), KC_BSPC, KC_APP
+),
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
@@ -33,38 +56,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,       KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
   KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,       KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_LSFT,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                        KC_H,       KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-  KC_LCTRL, KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,       KC_DEL, KC_BSLS, KC_N,       KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-                             KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC, KC_LSFT, MO(_RAISE), KC_BSPC, KC_APP
-),
-/* WORKMAN
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   D  |   R  |   W  |   B  |                    |   J  |   F  |   U  |   P  |  :  |  -   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LCTRL |   A  |   S  |   H  |   T  |   G  |-------.    ,-------|   Y  |   N  |   E  |   O  |   I  |  '   |
- * |------+------+------+------+------+------|  Del  |    |    \  |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   M  |   C  |   V  |-------|    |-------|   K  |   L  |   ,  |   .  |   /  |RShift|
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Shift \  |RAISE |BackSP| RGUI |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
- */
-
- [_WORKMAN] = LAYOUT(
-  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,       KC_7,    KC_8,    KC_9,    KC_0,     KC_GRV,
-  KC_TAB,   KC_Q,   KC_D,    KC_R,    KC_W,    KC_B,                        KC_J,       KC_F,    KC_U,    KC_P,    KC_SCLN,  KC_MINS,
-  KC_LSFT,  KC_A,   KC_S,    KC_H,    KC_T,    KC_G,                        KC_Y,       KC_N,    KC_E,    KC_O,    KC_I,     KC_QUOT,
-  KC_LCTRL, KC_Z,   KC_X,    KC_M,    KC_C,    KC_V,       KC_DEL, KC_BSLS, KC_K,       KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-                             KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC, KC_LSFT, MO(_RAISE), KC_BSPC, KC_APP
+  KC_LCTRL, KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,       KC_DEL, KC_BSLS, KC_N,       KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                             KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC, KC_RSFT, MO(_RAISE), KC_BSPC, KC_APP
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |      |
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   /  |   -  |   +  |   =  |   *  |-------.    ,-------|      |   (  |   )  |   {  |   }  |      |
+ * |      |   +  |   -  |   ;  |   =  |      |-------.    ,-------|      |   (  |   )  |   {  |   }  |      |
  * |------+------+------+------+------+------|  Del  |    |    \  |------+------+------+------+------+------|
  * |      |      |      |MvLeft|MvRght|      |-------|    |-------|      |   [  |   ]  |   <  |   >  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -74,8 +75,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   _______, _______, _______, _______,      _______,      _______,                   _______, _______, _______, _______, _______, _______,
-  _______, KC_1,    KC_2,    KC_3,         KC_4,         KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-  _______, KC_PSLS, KC_PMNS, KC_PPLS,      KC_EQL,       KC_PAST,                   _______, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______,
+  _______, _______, _______, _______,      _______,      _______,                   _______, _______, _______, _______, _______, _______,
+  _______, KC_PMNS, KC_PPLS, KC_SCLN,      KC_EQL,       _______,                   _______, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______,
   _______, _______, _______, LSG(KC_LEFT), LSG(KC_RGHT), _______, _______, _______, _______, KC_LBRC, KC_RBRC, KC_LT,   KC_GT,   _______,
                              _______,      _______,      _______, _______, KC_BSPC, _______, _______, KC_RALT
 ),
@@ -83,11 +84,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F7  |  F8  |  F9  | F10  | F11  | F12  |                    | PgDn | Pause|  Up  | PScr | Ins  | Home |
+ * |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |                    | PgDn | Pause|  Up  | PScr | Ins  | Home |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  F13 |  F14 |  F15 |  F16 |  F17 |  F18 |-------.    ,-------| PgUp | Left | Down | Right| Del  | End  |
  * |------+------+------+------+------+------|  Del  |    |    \  |------+------+------+------+------+------|
- * |  F19 |  F20 |  F21 | F22  | F23  | F24  |-------|    |-------|      | Prev | Play | Next | Num  |Scroll|
+ * |  F19 |  F20 |  F21 |  F22 |  F23 |  F24 |-------|    |-------|      | Prev | Play | Next | Num  |Scroll|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Shift \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -103,24 +104,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |MACHO |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |                    |      |   7  |   8  |   9  |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |ABC...|-------|    |-------|QWERTY|Workmn|      |      |      |      |
+ * |      |      |      |      |      |      |-------.    ,-------|      |   4  |   5  |   6  |      |      |
+ * |------+------+------+------+------+------|QWERTY |    |Workmn |------+------+------+------+------+------|
+ * |      |      |      |      |\\v...|ABC...|-------|    |-------|   0  |   1  |   2  |   3  |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Shift \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
   [_ADJUST] = LAYOUT(
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX,     XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX,     XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX,     XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, BH_ABCD1234, XXXXXXX, XXXXXXX, DF(_QWERTY), DF(_WORKMAN), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                             _______, _______, _______,     _______, _______, _______,     _______,      _______
+  BH_MACH, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                XXXXXXX, KC_7,    KC_8,    KC_9,    XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, BH_VMWH, BH_ABCD1234, DF(_QWERTY), DF(_WORKMAN), KC_0,    KC_1,    KC_2,    KC_3,    XXXXXXX, XXXXXXX,
+                             _______, _______, _______,     _______,     _______,      _______, _______, _______
   )
 };
 
@@ -130,7 +131,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 #ifdef COMBO_ENABLE
 
-const uint16_t PROGMEM combo_enter[] = {KC_SPC, KC_LSFT, COMBO_END};
+const uint16_t PROGMEM combo_enter[] = {KC_SPC, KC_RSFT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_enter, KC_ENT),
@@ -167,12 +168,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   {
     case BH_ABCD1234:
       if (record->event.pressed) {
-        SEND_STRING("ABCD1234*");
-      } else {
-        // when keycode QMKBEST is released
+        SEND_STRING("Abcd1234*");
+      }
+      else {
+
       }
       break;
-    
+    case BH_VMWH:
+      if (record->event.pressed) {
+        SEND_STRING("\\\\vmware-host\\");
+      }
+      else {
+
+      }
+      break;
+    case BH_MACH:
+      if (record->event.pressed) {
+        SEND_STRING("");
+      }
+      else {
+
+      }
+      break;
     default:
       break;
   }

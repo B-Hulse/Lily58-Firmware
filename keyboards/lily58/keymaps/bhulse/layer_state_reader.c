@@ -4,7 +4,7 @@
 #include "lily58.h"
 
 #define L_BASE 0
-#define L_WORKMAN (1 << 1)
+#define L_QWERTY (1 << 1)
 #define L_LOWER (1 << 2)
 #define L_RAISE (1 << 3)
 #define L_ADJUST (1 << 4)
@@ -18,17 +18,17 @@ const char *read_layer_state(void) {
   case L_BASE:
     switch (default_layer_state)
     {
-    case L_WORKMAN:
-      snprintf(layer_state_str, sizeof(layer_state_str), "Workman");
+    case L_QWERTY:
+      snprintf(layer_state_str, sizeof(layer_state_str), "QWERTY");
       break;
     
     default:
-      snprintf(layer_state_str, sizeof(layer_state_str), "QWERTY");
+      snprintf(layer_state_str, sizeof(layer_state_str), "Workman");
       break;
     }
     break;
-  case L_WORKMAN:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Workman");
+  case L_QWERTY:
+    snprintf(layer_state_str, sizeof(layer_state_str), "QWERTY");
     break;
   case L_RAISE:
     snprintf(layer_state_str, sizeof(layer_state_str), "Raise");
