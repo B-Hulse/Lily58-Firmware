@@ -8,9 +8,7 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  BH_ABCD1234 = SAFE_RANGE,
-  BH_VMWH,
-  BH_MACH,
+  BH_MACH = SAFE_RANGE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -60,23 +58,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |  F19 |  F20 |  F21 |  F22 |  F23 |  F24 |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |   !  |   $  |   #  |      |                    |      |      |      |      |      |      |
+ * |  F13 |      |   !  |   $  |   #  |  F16 |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   +  |   -  |   ;  |   =  |      |-------.    ,-------|      |   (  |   )  |   {  |   }  |      |
+ * |  F14 |   +  |   -  |   ;  |   =  |  F17 |-------.    ,-------|      |   (  |   )  |   {  |   }  |      |
  * |------+------+------+------+------+------|  Del  |    |    \  |------+------+------+------+------+------|
- * |      |   %  |   ^  |   *  |   &  |      |-------|    |-------|      |   [  |   ]  |   <  |   >  |      |
+ * |  F15 |   %  |   ^  |   *  |   &  |  F18 |-------|    |-------|      |   [  |   ]  |   <  |   >  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Shift \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  _______, _______, KC_EXLM,  KC_DLR, KC_HASH, _______,                   _______, _______, _______, _______, _______, _______,
-  _______, KC_PLUS, KC_MINS, KC_SCLN,  KC_EQL, _______,                   _______, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______,
-  _______, KC_PERC, KC_CIRC, KC_ASTR, KC_AMPR, _______, _______, _______, _______, KC_LBRC, KC_RBRC,   KC_LT,   KC_GT, _______,
+   KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  KC_F24,                   _______, _______, _______, _______, _______, _______,
+   KC_F13, _______, KC_EXLM,  KC_DLR, KC_HASH,  KC_F16,                   _______, _______, _______, _______, _______, _______,
+   KC_F14, KC_PLUS, KC_MINS, KC_SCLN,  KC_EQL,  KC_F17,                   _______, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______,
+   KC_F15, KC_PERC, KC_CIRC, KC_ASTR, KC_AMPR,  KC_F18, _______, _______, _______, KC_LBRC, KC_RBRC,   KC_LT,   KC_GT, _______,
                              _______, _______, _______, _______, _______, _______, _______, KC_RALT
 ),
 /* RAISE
@@ -109,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------.    ,-------|      |   4  |   5  |   6  |      |      |
  * |------+------+------+------+------+------|QWERTY |    |Workmn |------+------+------+------+------+------|
- * |      |      |      |      |\\v...|ABC...|-------|    |-------|   0  |   1  |   2  |   3  |      |      |
+ * |      |      |      |      |      |      |-------|    |-------|   0  |   1  |   2  |   3  |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Shift \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -119,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   BH_MACH, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                XXXXXXX, KC_7,    KC_8,    KC_9,    XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, BH_VMWH, BH_ABCD1234, DF(_QWERTY), DF(_WORKMAN), KC_0,    KC_1,    KC_2,    KC_3,    XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(_QWERTY), DF(_WORKMAN), KC_0,    KC_1,    KC_2,    KC_3,    XXXXXXX, XXXXXXX,
                              _______, _______, _______,     _______,     _______,      _______, _______, _______
   )
 };
@@ -165,22 +163,6 @@ bool oled_task_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode)
   {
-    case BH_ABCD1234:
-      if (record->event.pressed) {
-        SEND_STRING("Abcd1234*");
-      }
-      else {
-
-      }
-      break;
-    case BH_VMWH:
-      if (record->event.pressed) {
-        SEND_STRING("\\\\vmware-host\\");
-      }
-      else {
-
-      }
-      break;
     case BH_MACH:
       if (record->event.pressed) {
         SEND_STRING("");
